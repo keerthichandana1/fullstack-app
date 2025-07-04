@@ -7,9 +7,9 @@ fastify.register(cors, { origin: true });
 
 fastify.get('/api/hello', async (_, reply) => {
   try {
-    // const result = await pool.query('SELECT $1::text as message', ['Hello from PostgreSQL!']);
-    // reply.send({ message: result.rows[0].message });
-    reply.send({ message: 'Hello from Fastify!' });
+    const result = await pool.query('SELECT $1::text as message', ['Hello from PostgreSQL!']);
+    reply.send({ message: result.rows[0].message });
+    // reply.send({ message: 'Hello from Fastify!' });
   } catch (err) {
     console.error(err);
     reply.status(500).send({ error: 'Database error' });
